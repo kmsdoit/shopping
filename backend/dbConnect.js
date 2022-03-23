@@ -10,7 +10,7 @@ const connectionPool = mysql.createConnection({
 });
 
 connectionPool.connect((err) => {
-  if (err) console.log(err);
+  if (err) console.log(err + "DB Connect not Success");
   else console.log("DB Connect Success");
 });
 
