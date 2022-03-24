@@ -24,6 +24,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.get("/api/users", userApi.allUserApi);
 router.post("/api/users/register", userApi.registerApi);
 router.post("/api/users/login", userApi.loginApi);
+router.post("/api/AuthEmail", userApi.mailSender);
 router.get("/", (req: Request, res: Response) => {
   res.end("Hello world");
 });
