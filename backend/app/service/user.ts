@@ -53,27 +53,38 @@ module.exports = {
 
   //login API
   loginApi: async (req: Request, res: Response) => {
-      const sql = `select * from ${table} where user_id = ? and user_password = ?`;
-      const param = req.body.param;
+      const sql = `select * from ${table} where user_id = ?`;
+      const body = req.body;
       const jwtTokenKey = process.env.ACCESS_TOKEN_SECRET;
-      let currentPassword = param[1];
-      const encryptedPW = bcrypt.hashSync(currentPassword, 10) // 아이디 암호화
-      param[1] = encryptedPW; //복호화
+      const param = [body.user_id,body.user_password]
 
-      connectionPool.query(sql, param, (err: any, rows: any, fields: any) => {
+      connectionPool.query(sql, [param[0]], (err: any, rows: any, fields: any) => {
         if (err) {
           res.status(404).send({ msg: "error", content: err });
         } else {
-          const token = jwt.sign({
-            user_id: param[0]
-            },jwtTokenKey, {
-            expiresIn: '1h'
-            });
-            res.cookie('token',token);
-            res.status(200).json({
-                  result: 'ok',
-                  token
-            });
+          console.log(param[1]);
+          console.log(rows[0].user_password);
+          if(rows.length > 0){
+            bcrypt.compare(param[1],rows[0].user_password,(error:any,result:Boolean) => {
+              if(result) {
+                const token = jwt.sign({
+                  user_id: body.user_id
+                  },jwtTokenKey, {
+                    expiresIn: '1h'
+                  });
+                  res.cookie('token',token);
+                  res.status(200).json({
+                        result: 'ok',
+                        token
+                  });
+              }else{
+                res.status(400).send("비밀번호가 틀렸습니다");
+              }
+            })
+          }else {
+            res.status(400).send("위 사용자는 계정이 존재하지 않습니다");
+          }
+
         }
     })
   },
