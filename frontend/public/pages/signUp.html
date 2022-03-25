@@ -5,13 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/frontend/public/css/common.css">
+  <script src="https://kit.fontawesome.com/8293371a0e.js" crossorigin="anonymous"></script>
   <title>Shopping Project</title>
 </head>
 <body>
   <div class="wrapper">
     <header>logo</header>
     <section>
-      <h2>Sign up for free account</h2>
+      <h2>Sign up for account</h2>
       <form id="user_info" action="javascript:submitSignUp()">
         <input type="text" id="user_id"/><br/>  
         <input type="password" id="user_password"/>
@@ -22,7 +23,9 @@
         <label for="seePw2"></label>
         <button type="button" onclick="confirmPw()">Confirm</button><br/>
         <input type="email" id="user_email"/>
-        <button type="button" onclick="sendMail()">메일 전송</button><br/>
+        <button type="button" onclick="sendMail()" id="send_mail_btn">메일 전송</button><br/>
+        <input type="number" id="confirm_num" min="111111" max="999999" placeholder="인증번호 6자리를 입력하세요">
+        <button type="button" onclick="confirmMail()">인증번호 확인</button><br/>
         <input type="text" id="user_name"/><br/>
         <button type="submit" value="가입하기">Sign Up</button><!-- button으로 해도 되고 input type="submit" 으로 해도 됨-->
       </form>
@@ -32,6 +35,7 @@
     </footer>
   </div>
 </body>
+
 <script>
   const confirmPw = () => {
     let user_password = document.getElementById("user_password")
@@ -39,7 +43,27 @@
   }
 
   const sendMail = () => {
-    let user_email = document.getElementById("user_email")
+    let user_email = document.getElementById("user_email").value
+    console.log(user_email)
+
+      fetch('http://localhost:3000/api/AuthEmail').then().then()
+    // user_email 메일전송
+    
+  }
+
+  const confirmMail = () => {
+    let confirm_num = document.getElementById("confirm_num").value
+    //let mailing_num = fetch() 에서 받아야 함 ?!
+
+    if( confirm_num == /* 전송된 6자리 숫자값 */){
+      alert('인증완료');
+    }else{
+      alert('❌❌❌❌❌');
+      confirm_num = '';
+      confirm_num.focus();
+      getElementById("send_mail_btn").innerText = "메일 재전송";
+
+    }
   }
 
   const submitSignUp = () => {
@@ -48,10 +72,13 @@
     let user_email = document.getElementById("user_email")
     let user_name = document.getElementById("user_name")
     const infoArray = new Array()
-    console.log(user_id.value)
+    // console.log(user_id.value)
 
     infoArray.push( user_id.value, user_password.value, user_email.value, user_name.value)
     console.log(infoArray)
+
+    //여기서 fetching?? 
+
   }
 </script>
 </html>
