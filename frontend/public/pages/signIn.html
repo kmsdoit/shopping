@@ -7,6 +7,39 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <header>logo</header>
+    <section>
+      <h2>Sign up for free account</h2>
+      <form id="user_info" action="javascript:submitSignIn()">
+        <input type="text" id="user_id"/><br/>  
+        <input type="password" id="user_password"/>
+        <input type="checkbox" id="seePw">
+        <label for="seePw"></label><br/>
+        <button type="submit" value="로그인">Sign In</button><!-- button으로 해도 되고 input type="submit" 으로 해도 됨-->
+      </form>
+      
+    </section>
+    <footer>
+      COPYRIGHT ALL RIGHTS RESERVED
+    </footer>
 </body>
+<script>
+
+  const submitSignIn = () => {
+    let user_id = document.getElementById("user_id")
+    let user_password = document.getElementById("user_password")
+    let user_email = document.getElementById("user_email")
+    let user_name = document.getElementById("user_name")
+    //fetch post 방식 
+    // result : ok 나와야 성공
+    const infoArray = [
+      {
+        id : user_id,
+        pw : user_password,
+        name : user_name,
+        email : user_email
+      }
+    ]
+  }
+</script>
 </html>
