@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 var express = require("express");
 const router = express.Router();
 const userApi = require("../service/user");
-const bodyParser = require("body-parser");
 const session = require("express-session");
 
 router.use(
@@ -19,11 +18,13 @@ router.use(
   })
 );
 router.use(express.json());
-router.use(bodyParser.urlencoded({ extended: true }));
+router.use(express.urlencoded({ extended: true }));
+
 
 router.get("/api/users", userApi.allUserApi);
 router.post("/api/users/register", userApi.registerApi);
 router.post("/api/users/login", userApi.loginApi);
+router.post("/api/AuthEmail", userApi.mailSender);
 router.get("/", (req: Request, res: Response) => {
   res.end("Hello world");
 });
