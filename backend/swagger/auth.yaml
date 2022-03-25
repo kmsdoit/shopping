@@ -1,0 +1,29 @@
+/users/register:
+    post:
+      summary: register
+      requestBody:
+        description: need user's personal info
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                password:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                birthday:
+                  type: string
+                  format: date
+                nickname:
+                  type: string
+                profilePicture:
+                  type: string
+                  format: uri
+      responses:
+        '200':
+          $ref: './openapi.yaml#/components/responses/successResponse'

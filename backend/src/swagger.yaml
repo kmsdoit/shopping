@@ -1,0 +1,156 @@
+openapi: 3.0.0
+info:
+  title: Sample API
+  description: Optional multiline or single-line description in HTML.
+  version: 0.1.9
+servers:
+  - url: 'http://localhost:3000/api'
+    description: 'Optional server description, e.g. Main (production) server'
+  - url: 'http://staging-api.example.com'
+    description: 'Optional server description, e.g. Internal staging server for testing'
+paths:
+  /users/register:
+    post:
+      summary: Returns a list of users.
+      description: Optional extended description in CommonMark or HTML.
+      requestBody:
+        description: need user's personal info
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                user_password:
+                  type: string
+                user_name:
+                  type: string
+                  format: string
+                email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: success Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+                    expample: '{msg : success}'
+        '400':
+          description: fail Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+                    example: /user/register - 다시 파라미터 형식이 틀렸습니다.
+        '500':
+          description: server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+                    example: /user/register - server Error
+  /users/login:
+    post:
+      summary: Returns a list of users.
+      description: Optional extended description in CommonMark or HTML.
+      requestBody:
+        description: need user's personal info
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                user_password:
+                  type: string
+      responses:
+        '200':
+          description: success Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+                    expample: '{msg : success}'
+        '400':
+          description: fail Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+                    example: /user/login - 다시 파라미터 형식이 틀렸습니다.
+        '500':
+          description: server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+                    example: /user/login - server Error
+  /users/AuthEmail:
+    post:
+      summary: Returns a list of users.
+      description: Optional extended description in CommonMark or HTML.
+      requestBody:
+        description: need user's personal info
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_email:
+                  type: string
+      responses:
+        '200':
+          description: success Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+                    expample: '{msg : success}'
+        '400':
+          description: fail Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+                    example: /user/AuthEmail - 다시 파라미터 형식이 틀렸습니다.
+        '500':
+          description: server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+                    example: /user/AuthEmail - server Error
