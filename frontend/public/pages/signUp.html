@@ -126,7 +126,7 @@
   setInterval(function(){
     min = parseInt( time / 60);//몫을 계산
     sec = time%60; //나머지를 계산
-    
+
     document.getElementById("demo").innerHTML = `${min}분 ${sec}초` ;
     time--
 
@@ -135,5 +135,7 @@
       document.getElementById("demo").innerHTML = "시간초과";
     }    
   },1000);
+
+  
 </script>
 </html>
