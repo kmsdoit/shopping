@@ -9,15 +9,11 @@ const connectionPool = mysql.createConnection({
   database: process.env.DB_NAME,
 });
 
-// connectionPool.connect((err) => {
-//   if (err) console.log(err);
-//   else console.log("DB Connect Success");
-// });
-
-connectionPool.query("select * from user", (error, rows, field) => {
-  if (error) throw error;
-  //console.log("User Info is: ", rows);
+connectionPool.connect((err) => {
+  if (err) console.log(err);
+  else console.log("DB Connect Success");
 });
+
 
 // connectionPool.end();
 
