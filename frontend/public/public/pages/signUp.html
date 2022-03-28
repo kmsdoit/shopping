@@ -16,17 +16,21 @@
       <h2>Sign up for account</h2>
       <form id="user_info" action="javascript:submitSignUp()">
         <input type="text" id="user_id"/><br/>  
-        <input type="password" id="user_password"/><i class="fa-solid fa-eye-slash"></i>
+        <input type="password" id="user_password"/><i class="fa-solid fa-eye-slash fa-eye" id="icon_eyes"></i>
         <br/>
-        <input type="password" id="password_confirm"/><i class="fa-solid fa-eye-slash"></i>
-        <button type="button" onclick="confirmPw()">Confirm</button><br/>
+        <input type="password" id="password_confirm"/><i class="fa-solid fa-eye-slash fa-eye" id="icon_eyes2"></i>
+        <button type="button" onclick="confirmPw()">Confirm</button>
+        <br/>
         <input type="email" id="user_email"/>
-        <button type="button" onclick="sendMail()" id="send_mail_btn">메일 전송</button><br/>
+        <button type="button" onclick="sendMail()" id="send_mail_btn">메일 전송</button>
+        <br/>
         <input type="number" id="confirm_num" min="111111" max="999999" placeholder="인증번호 6자리를 입력하세요">
-        <span id="timer"></span>
-        <button type="button" id="confirm_num_btn" onclick="confirmMail()">인증번호 확인</button><br/>
+        <button type="button" id="confirm_num_btn" onclick="confirmMail()">인증번호 확인</button>
+        <br/>
+        <p id="timer"></p>
+        <br/>
         <input type="text" id="user_name"/><br/>
-        <button type="submit" value="가입하기">Sign Up</button><!-- button으로 해도 되고 input type="submit" 으로 해도 됨-->
+        <button type="submit" value="가입하기"></button><!-- button으로 해도 되고 input type="submit" 으로 해도 됨-->
       </form>
     </section>
     <footer>
@@ -35,5 +39,42 @@
     </footer>
   
 </body>
+<script src="../js/timer.js"></script>
+<script src="../js/class.js"></script>
+<script >
+
+let user_email = document.getElementById("user_email")
+
+let emailObj = {
+  "user_email":user_email.value
+}
+
+  const sendMail = async() => {
+
+console.log(user_email)
+
+let url = "http://localhost:3000/api/AuthEmail"
+await fetch(url, {
+  method: "POST",
+  body: JSON.stringify(emailObj)
+}).then(response => {
+  return response.json();
+}).then(parsedRes => {
+  console.log(parsedRes);
+});
+
+
+// user_email 메일전송
+setTimeout(()=>{
+  
+    
+
+  },180000);
+//setTimeout() 일정시간이 지난 후 특정 코드를 딱 1번 실행
+
+
+document.getElementById("send_mail_btn").innerHTML = "메일 재전송";
+}
+</script>
 
 </html>

@@ -27,16 +27,30 @@ const confirmPw = () => {
 }
 
 const sendMail = () => {
-  
+
   console.log(user_email)
 
-  fetch('http://localhost:3000/api/AuthEmail').then().then()
+  let url = "http://localhost:3000/api/AuthEmail"
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify({
+      "user_email": user_email.value
+    })
+}).then(response => {
+    return response.json();
+}).then(parsedRes => {
+    console.log(parsedRes);
+});
+
+
   // user_email 메일전송
+setTimeout(()=>{
+    
+      
 
+    },180000);
   //setTimeout() 일정시간이 지난 후 특정 코드를 딱 1번 실행
-  setTimeout(()=>{
-
-  },180000)
+  
 
   getElementById("send_mail_btn").innerHTML = "메일 재전송";
 }
