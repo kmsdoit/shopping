@@ -1,0 +1,23 @@
+@charset 'utf-8';
+*{margin: 0;padding: 0}
+ul,ol,li{list-style: none}
+a{text-decoration: none;color:inherit}
+address{font-style: normal}
+/*테이블관련*/
+
+table{border-collapse: collapse}
+caption{display: none}
+
+/*form관련*/
+legend{display: none}
+fieldset{border:none}
+input,select,textarea,button,label{box-sizing: border-box}
+
+/*클리어픽스*/
+.clearfix::after{content: '';display: block;clear:both}
+
+
+/*이미지관련*/
+img{vertical-align: middle}
+
+.blind{display: none;}
