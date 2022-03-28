@@ -26,26 +26,51 @@ const confirmPw = () => {
 
 }
 
-const sendMail = () => {
+
+
+  const sendMail = async() => {
+
+    let emailObj = {
+      "user_email":user_email.value
+    }
+
+    let emailString = JSON.stringify(emailObj)//왜 stringify 쓰는지 알기
+    // console.log(emailString)
+
+    let url = "http://localhost:3000/api/AuthEmail"
+
+    await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },//무 족  권 
+      body: emailString
+
+    }).then(response => {return response.json();
+      })
+      .then(parsedRes => {console.log(parsedRes);
+        alert("전송완료")
+      });
+
+    
+
+
   
-  console.log(user_email)
+    setTimeout(()=>{
+        
 
-  fetch('http://localhost:3000/api/AuthEmail').then().then()
-  // user_email 메일전송
-
-  //setTimeout() 일정시간이 지난 후 특정 코드를 딱 1번 실행
-  setTimeout(()=>{
-
-  },180000)
+        },180000);
+    //setTimeout() 일정시간이 지난 후 특정 코드를 딱 1번 실행
+  
 
   getElementById("send_mail_btn").innerHTML = "메일 재전송";
-}
+  }
 
 const confirmMail = () => {
   
   //let mailing_num = fetch() 에서 받아야 함 ?!
 
-  setInterval(()=>{
+  setInterval(() => {
 
     if( confirm_num == /* 전송된 6자리 숫자값 */){
     alert('인증완료');
