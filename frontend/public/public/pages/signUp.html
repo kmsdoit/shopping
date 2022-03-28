@@ -1,80 +1,144 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <script src="https://kit.fontawesome.com/8293371a0e.js" crossorigin="anonymous"></script>
   <title>Shopping Project</title>
 </head>
+
 <body>
-  
-    <header>header</header>
-    <section>
-      <h2>Sign up for account</h2>
-      <form id="user_info" action="javascript:submitSignUp()">
-        <input type="text" id="user_id"/><br/>  
-        <input type="password" id="user_password"/><i class="fa-solid fa-eye-slash fa-eye" id="icon_eyes"></i>
-        <br/>
-        <input type="password" id="password_confirm"/><i class="fa-solid fa-eye-slash fa-eye" id="icon_eyes2"></i>
+
+  <header>header</header>
+  <section>
+    <h2>Sign up for account</h2>
+    <form id="user_info" action="javascript:submitSignUp()">
+      <fieldset>
+        <input type="text" id="user_id" />
+      </fieldset>
+      <fieldset>
+        <input type="password" id="user_password" /><i class="fa-solid fa-eye-slash fa-eye" id="icon_eyes"></i>
+        <br />
+        <input type="password" id="password_confirm" /><i class="fa-solid fa-eye-slash fa-eye" id="icon_eyes2"></i>
         <button type="button" onclick="confirmPw()">Confirm</button>
-        <br/>
-        <input type="email" id="user_email"/>
+        <br />
+        <p id="pwMsg"></p>
+      </fieldset>
+      <fieldset>
+        <input type="email" id="user_email" />
         <button type="button" onclick="sendMail()" id="send_mail_btn">메일 전송</button>
-        <br/>
+      </fieldset>
+      <fieldset>
         <input type="number" id="confirm_num" min="111111" max="999999" placeholder="인증번호 6자리를 입력하세요">
-        <button type="button" id="confirm_num_btn" onclick="confirmMail()">인증번호 확인</button>
-        <br/>
+        <button type="button" id="confirm_num_btn" onclick="confirmMail()">인증번호 확인</button><br />
         <p id="timer"></p>
-        <br/>
-        <input type="text" id="user_name"/><br/>
-        <button type="submit" value="가입하기"></button><!-- button으로 해도 되고 input type="submit" 으로 해도 됨-->
-      </form>
-    </section>
-    <footer>
-      footer
-      COPYRIGHT ALL RIGHTS RESERVED
-    </footer>
-  
+      </fieldset>
+      <fieldset>
+        <input type="text" id="user_name" />
+      </fieldset>
+      <button type="submit" value="가입하기"></button><!-- button으로 해도 되고 input type="submit" 으로 해도 됨-->
+    </form>
+  </section>
+  <footer>
+    footer
+    COPYRIGHT ALL RIGHTS RESERVED
+  </footer>
+
 </body>
-<script src="../js/timer.js"></script>
 <script src="../js/class.js"></script>
-<script >
+<script>
 
-let user_email = document.getElementById("user_email")
+  let user_password = document.getElementById("user_password")
+  let password_confirm = document.getElementById("password_confirm")
+  let user_email = document.getElementById("user_email")
+  let user_id = document.getElementById("user_id")
+  let user_name = document.getElementById("user_name")
 
-let emailObj = {
-  "user_email":user_email.value
-}
+  const confirmPw = () => {
 
-  const sendMail = async() => {
+    if (user_password.value == password_confirm.value) {
+      // 패스워드 확인 input hide
+      // button도 hide (둘을 묶어서 하는게 좋을듯 )
+      //user_email show + focus()
+      document.getElementById("pwMsg").innerHTML = "비밀번호 일치"
+      user_email.focus();
+    } else {
+      document.getElementById("pwMsg").innerHTML = "비밀번호 불일치"//나중에는 창 만들어야지
+      user_password.value = '';
+      user_password.focus();
+      password_confirm.value = '';
+    }
 
-console.log(user_email)
+  }
+  const sendMail = async () => {
+    document.getElementById("timer").innerHTML = ""
 
-let url = "http://localhost:3000/api/AuthEmail"
-await fetch(url, {
-  method: "POST",
-  body: JSON.stringify(emailObj)
-}).then(response => {
-  return response.json();
-}).then(parsedRes => {
-  console.log(parsedRes);
-});
+    let emailObj = {
+      "user_email": user_email.value
+    }
+
+    let emailString = JSON.stringify(emailObj)
+    console.log(emailString)
+
+    let url = "http://localhost:3000/api/AuthEmail"
+
+    await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: emailString
+
+    }).then(response => {
+      return response.json();//response 를 json 형태로 반환하겠다.
+    })
+      .then(parsedRes => {
+        console.log(parsedRes);// response.json() == parsedRes ????
+        alert("전송완료")
+        let time = 180;
+        let min = "";//분
+        let sec = "";//초
+
+        const timer = () => {
+          setInterval(() => {
+            min = parseInt(time / 60);//몫을 계산
+            sec = time % 60; //나머지를 계산
+            document.getElementById("timer").innerHTML = `${min}분 ${sec}초`;
+            time--
+
+            if (time < 0) {
+              document.getElementById("timer").innerHTML = "시간초과";
+              clearInterval; // setInterval 실행을 끝냄   
+            }
+            // setInterval 실행을 끝냄   
+          }, 1000);
+        }
+        timer();
+
+        setTimeout(() => {
+          document.getElementById("send_mail_btn").innerHTML = "메일 재전송";
+          document.getElementById("send_mail_btn").disabled = false;
+        }, 180000);
 
 
-// user_email 메일전송
-setTimeout(()=>{
-  
-    
-
-  },180000);
-//setTimeout() 일정시간이 지난 후 특정 코드를 딱 1번 실행
+      });
 
 
-document.getElementById("send_mail_btn").innerHTML = "메일 재전송";
-}
+
+
+
+
+    //setTimeout() 일정시간이 지난 후 특정 코드를 딱 1번 실행
+
+    document.getElementById("send_mail_btn").innerHTML = "already sent!"
+    document.getElementById("send_mail_btn").disabled = true;
+    // document.getElementById("send_mail_btn");
+
+  }
 </script>
 
 </html>

@@ -14,7 +14,7 @@ window.onload = function(){
     }
 
   } 
-//======
+  
   icon_eyes2.onclick = function(){
     this.classList.toggle('active');
     
