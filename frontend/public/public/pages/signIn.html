@@ -4,20 +4,23 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <script src="https://kit.fontawesome.com/8293371a0e.js" crossorigin="anonymous"></script>
+
   <title>Document</title>
 </head>
 <body>
-  <header>logo</header>
+  <header>header</header>
     <section>
       <h2>Sign up for free account</h2>
       <form id="user_info" action="javascript:submitSignIn()">
         <input type="text" id="user_id"/><br/>  
-        <input type="password" id="user_password"/>
-        <input type="checkbox" id="seePw">
+        <input type="password" id="user_password"/><i class="fa-solid fa-eye-slash"></i>
         <label for="seePw"></label><br/>
         <button type="submit" value="로그인">Sign In</button><!-- button으로 해도 되고 input type="submit" 으로 해도 됨-->
       </form>
-      
+      <div id="demo"></div>
     </section>
     <footer>
       COPYRIGHT ALL RIGHTS RESERVED
@@ -25,19 +28,20 @@
 </body>
 <script>
 
+  let user_id = document.getElementById("user_id")
+  let user_password = document.getElementById("user_password")
+  let user_email = document.getElementById("user_email")
+  let user_name = document.getElementById("user_name")
+
   const submitSignIn = () => {
-    let user_id = document.getElementById("user_id")
-    let user_password = document.getElementById("user_password")
-    let user_email = document.getElementById("user_email")
-    let user_name = document.getElementById("user_name")
     //fetch post 방식 
     // result : ok 나와야 성공
     const infoArray = [
       {
-        id : user_id,
-        pw : user_password,
-        name : user_name,
-        email : user_email
+        "id" : user_id,
+        "pw" : user_password,
+        "name" : user_name,
+        "email" : user_email
       }
     ]
   }
