@@ -14,6 +14,19 @@ module.exports = {
                 res.status(400).send('계정이 존재하지 않습니다');
             }
         })
+    },
+
+    userDelete : async(req:Request,res:Response) => {
+      const sql = 'delete from user where user_id = ?';
+      const user_id = req.params.user_id;
+
+      await connectionPool.query(sql,user_id,(err:any) => {
+          if(err){
+              res.status(400).send('계정이 존재하지 않습니다');
+          }else{
+              res.status(200).send('계정이 삭제됐습니다.');
+          }
+      })
     }
 
 }
