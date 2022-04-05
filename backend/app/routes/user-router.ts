@@ -11,3 +11,4 @@ router.get('/user/:user_id',userApi.userInfo);
 router.delete('/user/delete/:user_id',userApi.userDelete);
 
 module.exports = router;
+
