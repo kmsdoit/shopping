@@ -1,30 +1,41 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <!-- singin css파일첨부 -->
+  <link rel="stylesheet" href="../css/signin.css">
   <script src="https://kit.fontawesome.com/8293371a0e.js" crossorigin="anonymous"></script>
 
-  <title>Document</title>
+  <title>로그인</title>
 </head>
+
 <body>
   <header>header</header>
-    <section>
-      <h2>Sign up for free account</h2>
-      <form id="user_info" action="javascript:submitSignIn()">
-        <input type="text" id="user_id"/><br/>  
-        <input type="password" id="user_password"/><i class="fa-solid fa-eye-slash"></i>
-        <label for="seePw"></label><br/>
-        <button type="submit" value="로그인">Sign In</button><!-- button으로 해도 되고 input type="submit" 으로 해도 됨-->
-      </form>
-      <div id="demo"></div>
-    </section>
-    <footer>
-      COPYRIGHT ALL RIGHTS RESERVED
-    </footer>
+  <section>
+    <h2>쇼핑몰 이름</h2>
+    <form id="user_info" action="javascript:submitSignIn()">
+      <div class="login-container">
+        
+        <input type="text" id="user_id" placeholder="아이디" /><br />
+        <input type="password" id="user_password" placeholder="비밀번호" />
+        <i class="fa-solid fa-eye-slash"></i>
+        <label for="seePw"></label><br />
+
+      </div>
+
+      <button type="submit" value="로그인" class="login-btn">Sign In</button>
+      <!-- button으로 해도 되고 input type="submit" 으로 해도 됨-->
+    </form>
+    <div id="demo"></div>
+  </section>
+  <footer>
+    COPYRIGHT ALL RIGHTS RESERVED
+  </footer>
 </body>
 <script>
 
@@ -38,12 +49,19 @@
     // result : ok 나와야 성공
     const infoArray = [
       {
-        "id" : user_id,
-        "pw" : user_password,
-        "name" : user_name,
-        "email" : user_email
+        "id": user_id,
+        "pw": user_password,
+        "name": user_name,
+        "email": user_email
       }
     ]
   }
+
+//이메일 형식을 입력했는지
+//숫자나 문자만 입력했는지
+//비번에 영어 대문자가 들어있는지
+//이런 것들을 검사 -> 정규식 이용
+
 </script>
+
 </html>
