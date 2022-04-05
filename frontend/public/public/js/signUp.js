@@ -43,7 +43,7 @@ const confirmPw = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-      },//무 족  권 
+      },//json으로 보내줌
       body: emailString
 
     }).then(response => {return response.json();
