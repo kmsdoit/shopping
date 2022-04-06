@@ -104,6 +104,7 @@ module.exports = {
         user: process.env.NODEMAILER_USER,
         pass: process.env.NODEMAILER_PASS,
       },
+
     });
   
     // send mail with defined transport object
