@@ -80,7 +80,6 @@
       "user_email": user_email.value
     }
 
-    let emailString = JSON.stringify(emailObj)
     console.log(emailString)
 
     let url = "http://localhost:3000/api/AuthEmail"
@@ -90,7 +89,7 @@
       headers: {
         "Content-Type": "application/json",
       },
-      body: emailString
+      body: JSON.stringify(emailObj)
 
     }).then(response => {
       return response.json();//response 를 json 형태로 반환하겠다.
