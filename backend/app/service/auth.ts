@@ -14,6 +14,7 @@ const generateRandom = function (min:any, max:any) {
 
 module.exports = {
 
+
   allUserApi: async (res: Response) => {
     const sql = `select * from ${table}`;
 
@@ -43,7 +44,6 @@ module.exports = {
 
     connectionPool.query(sql, param, (err: any, rows: any, fields: any) => {
       if (err) {
-        
         res.status(400).send({ msg: "error", content: err });
       } else {
         res.status(200).send({ msg: "success" , param:param});
