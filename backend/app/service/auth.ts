@@ -117,13 +117,12 @@ module.exports = {
     });
 
     await transporter.sendMail(info, function (error:any, info:any) {
-        res.cookie("number",number);
         if (error) {
             console.log(error);
             res.status(400).send({msg:'fail', content:'이메일 정보를 다시 확인 해주세요'})
         }
         console.log("Finish sending email : " + info);
-        res.status(200).send({msg : "success"});
+        res.status(200).send({msg : "success",'number' : number});
         transporter.close()
     });
   }
