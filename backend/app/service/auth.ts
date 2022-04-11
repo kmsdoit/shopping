@@ -14,6 +14,7 @@ const generateRandom = function (min:any, max:any) {
 
 module.exports = {
 
+
   allUserApi: async (res: Response) => {
     const sql = `select * from ${table}`;
 
@@ -43,7 +44,6 @@ module.exports = {
 
     connectionPool.query(sql, param, (err: any, rows: any, fields: any) => {
       if (err) {
-        
         res.status(400).send({ msg: "error", content: err });
       } else {
         res.status(200).send({ msg: "success" , param:param});
@@ -104,6 +104,7 @@ module.exports = {
         user: process.env.NODEMAILER_USER,
         pass: process.env.NODEMAILER_PASS,
       },
+
     });
   
     // send mail with defined transport object
@@ -121,7 +122,7 @@ module.exports = {
             res.status(400).send({msg:'fail', content:'이메일 정보를 다시 확인 해주세요'})
         }
         console.log("Finish sending email : " + info);
-        res.status(200).send({msg : "success"});
+        res.status(200).send({msg : "success",'number' : number});
         transporter.close()
     });
   }
