@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body header {
+  text-align: center;
+  font-size: 30px;
+}
+
+section {
+  text-align: center;
+}
+section h2 {
+  margin: 16px 0 16px 0;
+  /* font-family: ; */
+  padding: 16px;
+}
+
+.login-container {
+  width: 100%;
+}
+
+.login-btn {
+  width: 80%;
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.find-btn {
+  width: 40%;
+  margin-top: 20px;
+  padding: 16px;
+  font-size: 20px;
+}
+
+.user_password {
+  width: 80%;
+}
+.psssword_hide {
+  width: 5%;
+}
+

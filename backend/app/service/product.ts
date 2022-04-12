@@ -2,13 +2,16 @@ import {Request, Response} from "express";
 
 const bcrypt = require('bcrypt');
 const connectionPool = require("../config/dbConnect");
+const multer = require('multer')
 
 module.exports = {
-    userInfo : async(req:Request,res:Response) => {
-        const sql = 'select * from user where user_id = ?';
-        const user_id = req.params.user_id;
+    productInfo : async(req:Request,res:Response) => {
+        const sql = 'select * from product where product_no = ?';
+        const product_no = req.params.product_no;
 
-        await connectionPool.query(sql,user_id,(err:any,rows:Array<String>,fields:Array<String>) => {
+        console.log(product_no);
+
+        await connectionPool.query(sql,product_no,(err:any,rows:Array<String>,fields:Array<String>) => {
             if(rows.length > 0){
                 res.status(200).send({userinfo : rows[0]})
             }else{
@@ -17,11 +20,15 @@ module.exports = {
         })
     },
 
-    userDelete : async(req:Request,res:Response) => {
-      const sql = 'delete from user where user_id = ?';
-      const user_id = req.params.user_id;
+    productInsert : async(req:Request,res:Response) => {
 
-      await connectionPool.query(sql,user_id,(err:any) => {
+    },
+
+    productDelete : async(req:Request,res:Response) => {
+      const sql = 'delete from user where product_no = ?';
+      const product_no = req.params.product_no;
+
+      await connectionPool.query(sql,product_no,(err:any) => {
           if(err){
               res.status(400).send('계정이 존재하지 않습니다');
           }else{
@@ -65,9 +72,6 @@ module.exports = {
                 })
             }
         });
-
-
-
 
 
 

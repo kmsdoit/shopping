@@ -8,5 +8,8 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 router.get('/user/:user_id',userApi.userInfo);
+router.post('/user/update/:user_id',userApi.userUpdateApi);
+router.delete('/user/delete/:user_id',userApi.userDelete);
 
 module.exports = router;
+
