@@ -11,17 +11,16 @@ header {
   background-color: rgb(0, 0, 0);
   color: #fff;
 }
-
-section {
+/* Contents 영역 */
+section.signForm {
   position: relative;
   height: 800px;
-  width: 800px;
-  border-radius: 50%;
+  width: 70%;
+  background: url(../assets/images/sign_bg.png) no-repeat center/contain;
   margin-left: 50%;
   transform: translateX(-50%);
-  border: 1px solid #000;
 }
-section > h2 {
+section.signForm > h2 {
   text-align: center;
   margin-top: 10%;
 }
@@ -53,7 +52,6 @@ form {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 1px solid #000;
   padding: 16px;
   margin: 0 auto;
 }
@@ -68,7 +66,7 @@ input {
   outline: 0;
   font-size: 14px;
   border-radius: 16px * 20;
-  padding: 16px;
+  padding: 10px;
   background-color: #ebecf0;
   text-shadow: 1px 1px 0 #fff;
 }
@@ -97,7 +95,7 @@ button {
   box-shadow: -5px -5px 20px #fff, 5px 5px 20px #babecc;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
-  width: 20%;
+  width: 25%;
   font-weight: 600;
 }
 button:hover {
@@ -124,11 +122,54 @@ button:active {
 i {
   color: inherit;
 }
-
+.pw-icon {
+  position: absolute;
+  left: 62%;
+  line-height: 50px;
+  color: #aaa;
+}
+button[type="submit"] {
+  width: 120px;
+  height: 60px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: 20px;
+}
+section#imageSlider {
+  height: 500px;
+  width: 100%;
+  border: 1px solid #61677c;
+}
+section.SuggestionSection {
+  height: 500px;
+  width: 80%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.SuggestionSection > ul > li {
+  width: 200px;
+  height: 300px;
+  float: left;
+  border: 0.5px solid #ddd;
+  margin-right: 25px;
+}
 /* Footer 영역 */
 footer {
   width: 100%;
   height: 300px;
   background-color: rgb(0, 0, 0);
   color: #fff;
+}
+
+/* large screen */
+@media screen and (max-width: 1200px) {
+}
+/* laptop */
+@media screen and (max-width: 1024px) {
+}
+/* tablet */
+@media screen and (max-width: 768px) {
+}
+/* mobile */
+@media screen and (max-width: 480px) {
 }
